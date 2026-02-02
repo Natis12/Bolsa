@@ -70,7 +70,8 @@
 
                 reports.forEach(file => {
                     // Formatear nombre: informe-02-02-2026.html -> 02 / 02 / 2026
-                    const cleanDate = file.name.replace('informe-', '').substring(0, 10).replace(/-/g, ' / ');
+                    const raw = file.name.replace('informe-', '').replace('.html', '').split('-');
+		const cleanDate = `${raw[0]}/${raw[1]}/${raw[2]} - ${raw[3]}:${raw[4]}`;
                     
                     const item = document.createElement('div');
                     item.className = 'report-card';
