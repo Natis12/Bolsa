@@ -21,7 +21,7 @@ jobs:
           git config --global user.email "bot@github.com"
           
           # Borrar archivos antiguos (+30 dias)
-          find . -name "informe-*.html" -type f -mtime +1 -exec rm {} \;
+          find . -name "informe-*.html" -type f -mtime +0 -exec rm {} \;
           
           # Guardar cambios si los hay
           if [[ `git status --porcelain` ]]; then
