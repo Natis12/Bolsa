@@ -3,15 +3,22 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sergio Bolsa - Centro de Informes</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
 
-        /* === ESTILOS BASE === */
+        /* === RESET CRÍTICO PARA MÓVIL === */
+        html,
         body {
             margin: 0;
             padding: 0;
+            max-width: 100vw;
+            overflow-x: hidden;
+            /* PROHIBE SCROLL LATERAL */
+        }
+
+        body {
             font-family: 'Inter', sans-serif;
             transition: background 0.3s, color 0.3s;
         }
@@ -26,7 +33,7 @@
             color: #f4f4f0;
         }
 
-        /* === CENTRADO ESCRITORIO (V4) === */
+        /* CENTRADO ESCRITORIO */
         body {
             display: flex;
             flex-direction: column;
@@ -34,6 +41,7 @@
             min-height: 100vh;
         }
 
+        /* === NAV === */
         .nav-fixed {
             position: fixed;
             top: 0;
@@ -91,7 +99,7 @@
             font-weight: bold;
         }
 
-        /* Wrapper Centrador */
+        /* === WRAPPER CENTRADO === */
         .wrapper-center {
             display: flex;
             justify-content: center;
@@ -109,6 +117,7 @@
             box-sizing: border-box;
         }
 
+        /* COLUMNAS */
         .main-col {
             flex: 3;
             background: #fff;
@@ -116,6 +125,8 @@
             border-radius: 12px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.04);
             max-width: 850px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .side-col {
@@ -124,6 +135,7 @@
             max-width: 320px;
         }
 
+        /* SIDEBAR */
         .sticky-summary {
             position: sticky;
             top: 90px;
@@ -176,15 +188,7 @@
             line-height: 1;
         }
 
-        .trend-label {
-            font-size: 0.7rem;
-            color: #888;
-            margin-top: 5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        /* Estilos Informe */
+        /* CONTENT */
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
@@ -194,47 +198,10 @@
             line-height: 1.1;
             margin-bottom: 20px;
             color: #000;
+            overflow-wrap: break-word;
         }
 
-        .sentiment-badge {
-            display: inline-block;
-            background: #f0f0f0;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid #ddd;
-            margin-bottom: 15px;
-        }
-
-        .intro-lead {
-            font-size: 1.15rem;
-            color: #555;
-            margin-bottom: 30px;
-            font-weight: 300;
-            line-height: 1.6;
-        }
-
-        .subhead {
-            font-family: 'Space Grotesk';
-            font-size: 1.6rem;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            color: #111;
-            font-weight: 700;
-            border-left: 4px solid #ff4d00;
-            padding-left: 15px;
-        }
-
-        .divider {
-            border: 0;
-            border-top: 1px solid #eee;
-            margin: 30px 0;
-        }
-
+        /* break-word evita desbordes en títulos largos */
         .theme-box {
             background: #fafafa;
             border-radius: 8px;
@@ -243,40 +210,8 @@
             border-left: 4px solid #ff4d00;
             position: relative;
             transition: transform 0.2s;
-        }
-
-        .theme-number {
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            font-size: 3.5rem;
-            font-family: 'Space Grotesk';
-            font-weight: 700;
-            color: #e5e5e5;
-            line-height: 1;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .theme-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .theme-content h3 {
-            font-family: 'Space Grotesk';
-            font-size: 1.3rem;
-            color: #000;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .date-footer {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 0.8rem;
-            color: #999;
-            margin-top: 30px;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         /* HISTORIAL */
@@ -286,25 +221,16 @@
             margin: 100px auto;
             padding: 0 20px;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .archive-title {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Space Grotesk';
             font-size: 3.5rem;
-            margin-bottom: 10px;
-            line-height: 1;
             text-transform: uppercase;
             letter-spacing: -2px;
             color: #fff;
-        }
-
-        .archive-subtitle {
-            color: #888;
-            font-size: 1.2rem;
-            margin-bottom: 60px;
-            font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            line-height: 1;
         }
 
         .timeline {
@@ -316,18 +242,7 @@
         .report-card-dark {
             position: relative;
             margin-bottom: 40px;
-        }
-
-        .report-card-dark::before {
-            content: '';
-            position: absolute;
-            left: -46px;
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background: #ff4d00;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #ff4d00;
+            max-width: 100%;
         }
 
         .report-link-dark {
@@ -339,19 +254,7 @@
             color: white;
             border: 1px solid #333;
             transition: all 0.3s ease;
-        }
-
-        .report-title-dark {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: block;
-            color: white;
-        }
-
-        .highlight-time {
-            color: #ff4d00;
-            font-weight: bold;
+            box-sizing: border-box;
         }
 
         #loading {
@@ -369,85 +272,89 @@
             }
         }
 
-
-        /* === 📱 MEDIA QUERIES PARA MÓVIL (NO AFECTA A ESCRITORIO V4) === */
+        /* === 📱 MÓVIL EXTREMO (V6) === */
         @media (max-width: 768px) {
+            .wrapper-center {
+                padding-top: 80px;
+            }
 
-            /* Ajuste del Nav */
             .nav-fixed {
-                padding: 15px 20px;
-                justify-content: space-between;
+                padding: 10px 15px;
             }
 
             .brand {
-                font-size: 0.9rem;
+                font-size: 0.8rem;
             }
 
+            /* Marca más pequeña para que quepa */
             .nav-btn {
+                padding: 4px 8px;
                 font-size: 0.7rem;
-                padding: 5px 10px;
                 margin-left: 5px;
             }
 
-            /* Ajuste de Columnas (Colapsar) */
             .layout-wrapper {
+                display: flex;
                 flex-direction: column;
-                /* Pone uno debajo de otro */
                 gap: 30px;
-                padding: 0 15px;
-                /* Menos padding lateral */
+                padding: 0 10px;
             }
 
-            /* Main Column - Ocupar todo el ancho */
+            /* Menos padding lateral */
             .main-col {
-                padding: 25px;
-                /* Menos padding interno */
-                width: 100%;
-                max-width: none;
+                padding: 20px 15px;
+                max-width: 100%;
             }
 
-            /* Sidebar - Poner abajo */
             .side-col {
-                order: 2;
-                /* Fuerza a ir abajo */
                 width: 100%;
-                max-width: none;
-                margin-bottom: 50px;
+                max-width: 100%;
+                min-width: 0;
             }
 
-            /* Texto más pequeño */
             .headline {
-                font-size: 1.8rem;
-                letter-spacing: -0.5px;
+                font-size: 1.6rem;
             }
 
-            .subhead {
-                font-size: 1.4rem;
-                padding-left: 10px;
-                border-left-width: 3px;
+            .theme-box {
+                padding: 15px;
             }
 
-            .intro-lead {
-                font-size: 1rem;
+            .theme-number {
+                font-size: 2.5rem;
+                top: 10px;
+                right: 10px;
             }
 
-            /* Archivo lista */
+            /* Ajustes Historial en Móvil */
+            .archive-title {
+                font-size: 2rem;
+            }
+
             .timeline {
-                padding-left: 20px;
+                padding-left: 15px;
+                margin-left: 5px;
             }
 
             .report-card-dark::before {
-                left: -26px;
+                left: -21px;
+                width: 8px;
+                height: 8px;
             }
 
-            .archive-title {
-                font-size: 2.2rem;
+            .report-link-dark {
+                padding: 15px;
             }
 
-            .archive-subtitle {
-                font-size: 0.9rem;
-                margin-bottom: 40px;
+            .report-title-dark {
+                font-size: 1.2rem;
             }
+
+            .arrow {
+                display: none;
+            }
+
+            /* Ocultar flecha en móvil para ganar espacio */
         }
     </style>
 </head>
@@ -466,6 +373,7 @@
     <div class="wrapper-center">
         <div id="latest-view"></div>
     </div>
+
     <div id="archive-view">
         <h1 class="archive-title">Centro de<br>Informes</h1>
         <div class="archive-subtitle">Análisis de Mercado Diario</div>
