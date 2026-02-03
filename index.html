@@ -17,7 +17,7 @@
         }
 
         body.light-mode {
-            background: #f4f4f4;
+            background: #f0f0f0;
             color: #111;
         }
 
@@ -84,13 +84,19 @@
             font-weight: bold;
         }
 
-        /* === ÚLTIMO INFORME (MEZCLA: CONTENIDO NUEVO + SIDEBAR CLÁSICA) === */
+        /* === ÚLTIMO INFORME (CENTRADO MEJORADO) === */
         .layout-wrapper {
-            max-width: 1400px;
-            margin: 90px auto 50px;
+            width: 100%;
+            max-width: 1200px;
+            /* Reducido de 1300 a 1200 para centrar mejor en pantallas normales */
+            margin: 100px auto 50px;
+            /* AUTO márgenes laterales para centrar */
             padding: 0 20px;
             display: flex;
-            gap: 50px;
+            justify-content: center;
+            /* Asegura el centrado flex */
+            gap: 40px;
+            box-sizing: border-box;
         }
 
         .main-col {
@@ -99,14 +105,16 @@
             padding: 50px;
             border-radius: 12px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.04);
+            max-width: 850px;
         }
 
         .side-col {
             flex: 1;
-            min-width: 300px;
+            min-width: 260px;
+            max-width: 320px;
         }
 
-        /* --- SIDEBAR CLÁSICA (LA QUE TE GUSTABA) --- */
+        /* SIDEBAR CLÁSICA CON LETRA MÁS FINA */
         .sticky-summary {
             position: sticky;
             top: 90px;
@@ -122,11 +130,9 @@
             color: #ff4d00;
             margin-top: 0;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            border-bottom: none;
-            padding-bottom: 0;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
         }
 
         .summary-list {
@@ -135,20 +141,15 @@
         }
 
         .summary-list li {
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-            color: #ccc;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+            /* REDUCIDO de 0.95rem */
+            line-height: 1.5;
+            color: #bbb;
             border-bottom: 1px dashed #333;
-            padding-bottom: 5px;
+            padding-bottom: 8px;
             display: list-item;
         }
-
-        /* Volvemos al borde punteado */
-        .summary-list li::before {
-            content: none;
-        }
-
-        /* Quitamos el bullet naranja nuevo */
 
         .action-box {
             margin-top: 30px;
@@ -179,9 +180,9 @@
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
-            font-size: 2.8rem;
-            letter-spacing: -1.5px;
-            margin-top: 10px;
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+            margin-top: 0;
             line-height: 1.1;
             margin-bottom: 20px;
             color: #000;
@@ -192,16 +193,17 @@
             background: #f0f0f0;
             padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: #555;
             text-transform: uppercase;
             letter-spacing: 1px;
             border: 1px solid #ddd;
+            margin-bottom: 15px;
         }
 
         .intro-lead {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: #555;
             margin-bottom: 30px;
             font-weight: 300;
@@ -210,47 +212,45 @@
 
         .subhead {
             font-family: 'Space Grotesk';
-            font-size: 1.8rem;
-            margin-top: 50px;
-            margin-bottom: 25px;
+            font-size: 1.6rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
             color: #111;
             font-weight: 700;
-            border-left: 5px solid #ff4d00;
+            border-left: 4px solid #ff4d00;
             padding-left: 15px;
         }
 
         .divider {
             border: 0;
             border-top: 1px solid #eee;
-            margin: 40px 0;
+            margin: 30px 0;
         }
 
-        /* TARJETAS TEMÁTICAS */
         .theme-box {
             background: #fafafa;
             border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 25px;
-            border-left: 5px solid #ff4d00;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff4d00;
             position: relative;
             transition: transform 0.2s;
         }
 
         .theme-box:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
         }
 
         .theme-number {
             position: absolute;
             right: 20px;
-            top: 20px;
-            font-size: 4rem;
+            top: 15px;
+            font-size: 3.5rem;
             font-family: 'Space Grotesk';
             font-weight: 700;
             color: #e5e5e5;
             line-height: 1;
-            z-index: 1;
             pointer-events: none;
         }
 
@@ -261,30 +261,25 @@
 
         .theme-content h3 {
             font-family: 'Space Grotesk';
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #000;
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .theme-content p {
             color: #333;
             margin: 0;
-            font-size: 1.05rem;
+            font-size: 1rem;
         }
 
-        .theme-content strong {
-            color: #d14000;
-            font-weight: 700;
-        }
-
-        /* FOOTER FECHA */
+        /* FOOTER */
         .date-footer {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             font-size: 0.8rem;
             color: #999;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         @media(max-width: 900px) {
@@ -294,11 +289,13 @@
 
             .side-col {
                 order: -1;
+                width: 100%;
+                max-width: none;
             }
         }
 
 
-        /* === HISTORIAL (DARK MODE MONOCLE - NO TOCAR) === */
+        /* === HISTORIAL (DARK MODE MONOCLE) === */
         #archive-view {
             display: none;
             max-width: 900px;
