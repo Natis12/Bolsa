@@ -429,7 +429,7 @@
             }
         }
 
-        /* === 📱 MÓVIL (V10 FIXED) === */
+        /* === 📱 MÓVIL (V10 FIXED + REVERSE) === */
         @media (max-width: 900px) {
             .wrapper-center {
                 padding-top: 80px;
@@ -456,13 +456,16 @@
                 padding: 25px 20px;
                 width: 100%;
                 max-width: 100%;
+                order: 2;
+                /* Informe DEBAJO */
             }
 
             .side-col {
-                order: 2;
                 width: 100%;
                 max-width: 100%;
                 min-width: 0;
+                order: 1;
+                /* Sidebar ENCIMA */
             }
 
             .headline {
