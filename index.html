@@ -135,7 +135,7 @@
             max-width: 320px;
         }
 
-        /* SIDEBAR */
+        /* SIDEBAR (V2 RESTAURADA) */
         .sticky-summary {
             position: sticky;
             top: 90px;
@@ -214,7 +214,7 @@
             box-sizing: border-box;
         }
 
-        /* HISTORIAL */
+        /* HISTORIAL COMPLETO (RESTAURADO) */
         #archive-view {
             display: none;
             max-width: 900px;
@@ -233,6 +233,15 @@
             line-height: 1;
         }
 
+        .archive-subtitle {
+            color: #888;
+            font-size: 1.2rem;
+            margin-bottom: 60px;
+            font-family: 'Space Grotesk';
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
         .timeline {
             border-left: 2px solid #333;
             padding-left: 40px;
@@ -245,6 +254,19 @@
             max-width: 100%;
         }
 
+        /* Bola naranja restaurada */
+        .report-card-dark::before {
+            content: '';
+            position: absolute;
+            left: -46px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: #ff4d00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff4d00;
+        }
+
         .report-link-dark {
             display: block;
             background: #1a1a1a;
@@ -255,6 +277,38 @@
             border: 1px solid #333;
             transition: all 0.3s ease;
             box-sizing: border-box;
+        }
+
+        .report-link-dark:hover {
+            border-color: #ff4d00;
+            transform: translateX(5px);
+        }
+
+        .report-title-dark {
+            font-family: 'Space Grotesk';
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+            color: white;
+        }
+
+        .report-meta-dark {
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .highlight-time {
+            color: #ff4d00;
+            font-weight: bold;
+        }
+
+        .arrow {
+            float: right;
+            color: #ff4d00;
+            font-size: 1.2rem;
+            font-weight: bold;
         }
 
         #loading {
@@ -272,7 +326,7 @@
             }
         }
 
-        /* === 📱 MÓVIL EXTREMO (V6) === */
+        /* === 📱 MÓVIL (V7 REPARADO) === */
         @media (max-width: 768px) {
             .wrapper-center {
                 padding-top: 80px;
@@ -286,7 +340,6 @@
                 font-size: 0.8rem;
             }
 
-            /* Marca más pequeña para que quepa */
             .nav-btn {
                 padding: 4px 8px;
                 font-size: 0.7rem;
@@ -297,12 +350,11 @@
                 display: flex;
                 flex-direction: column;
                 gap: 30px;
-                padding: 0 10px;
+                padding: 0 15px;
             }
 
-            /* Menos padding lateral */
             .main-col {
-                padding: 20px 15px;
+                padding: 25px 20px;
                 max-width: 100%;
             }
 
@@ -313,48 +365,46 @@
             }
 
             .headline {
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
 
             .theme-box {
-                padding: 15px;
-            }
-
-            .theme-number {
-                font-size: 2.5rem;
-                top: 10px;
-                right: 10px;
+                padding: 20px;
             }
 
             /* Ajustes Historial en Móvil */
             .archive-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
+            /* Asegurar que no se corte */
             .timeline {
-                padding-left: 15px;
+                padding-left: 25px;
                 margin-left: 5px;
             }
 
+            /* Más espacio para la bola */
             .report-card-dark::before {
-                left: -21px;
-                width: 8px;
-                height: 8px;
+                left: -31px;
+                width: 10px;
+                height: 10px;
             }
 
+            /* Bola visible */
             .report-link-dark {
-                padding: 15px;
+                padding: 20px;
             }
 
             .report-title-dark {
-                font-size: 1.2rem;
+                font-size: 1.3rem;
             }
 
             .arrow {
-                display: none;
+                display: block;
+                font-size: 1rem;
             }
 
-            /* Ocultar flecha en móvil para ganar espacio */
+            /* Flecha visible pero pequeña */
         }
     </style>
 </head>
@@ -421,7 +471,12 @@
                 let dateDisplay = parts ? `${parts[1]}/${parts[2]}/${parts[3]} <span class="highlight-time"> | ${parts[4]}:${parts[5]}H</span>` : file.name;
                 const item = document.createElement('div');
                 item.className = 'report-card-dark';
-                item.innerHTML = `<a href="${file.name}" class="report-link-dark"><span class="arrow">→</span><span class="report-title-dark">INFORME DE MERCADO</span><span class="report-meta-dark">📅 ${dateDisplay}</span></a>`;
+                item.innerHTML = `
+                    <a href="${file.name}" class="report-link-dark">
+                        <span class="arrow">→</span>
+                        <span class="report-title-dark">INFORME DE MERCADO</span>
+                        <span class="report-meta-dark">📅 ${dateDisplay}</span>
+                    </a>`;
                 list.appendChild(item);
             });
         }
