@@ -1,4 +1,4 @@
-name: Limpieza
+name: Limpieza Fiable (Python)
 
 on:
   schedule:
@@ -15,20 +15,48 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Iniciar Limpieza
+      - name: Borrar informes antiguos según fecha en nombre
+        shell: python
+        run: |
+          import os
+          import re
+          from datetime import datetime, timedelta
+
+          # CONFIGURACIÓN: Borrar si tiene más de X días
+          MAX_DIAS = 1  # <--- CAMBIA ESTO A 1 PARA PROBAR CON LOS DE AYER
+          ahora = datetime.utcnow()
+
+          print(f"🧹 Iniciando limpieza. Borrando archivos anteriores a {MAX_DIAS} dias.")
+          
+          archivos_borrados = 0
+          
+          for archivo in os.listdir('.'):
+              if archivo.startswith("informe-") and archivo.endswith(".html"):
+                  # Intentamos extraer fecha del nombre: informe-DD-MM-YYYY-HH-MM.html
+                  match = re.search(r'informe-(\d{2})-(\d{2})-(\d{4})', archivo)
+                  if match:
+                      dia, mes, anio = map(int, match.groups())
+                      fecha_archivo = datetime(anio, mes, dia)
+                      
+                      # Calculamos antigüedad
+                      edad = (ahora - fecha_archivo).days
+                      
+                      if edad >= MAX_DIAS:
+                          print(f"🗑️ Eliminando {archivo} (Edad: {edad} días)")
+                          os.remove(archivo)
+                          archivos_borrados += 1
+          
+          print(f"📊 Total borrados: {archivos_borrados}")
+          
+          # Guardamos variable para el siguiente paso
+          with open(os.environ['GITHUB_ENV'], 'a') as f:
+              f.write(f"BORRADOS={archivos_borrados}\n")
+
+      - name: Commit y Push cambios
+        if: env.BORRADOS > 0
         run: |
           git config --global user.name "Bot Limpieza"
           git config --global user.email "bot@github.com"
-          
-          # Borrar archivos antiguos (+30 dias)
-           find . -name "informe-*.html" -type f -mmin +360 -exec rm {} \;
-          
-          # Guardar cambios si los hay
-          if [[ `git status --porcelain` ]]; then
-            git add .
-            git commit -m "Auto borrado de informes viejos"
-            git push
-            echo "✅ Borrado completado"
-          else
-            echo "✨ Nada que borrar hoy"
-          fi
+          git add .
+          git commit -m "Auto limpieza: ${BORRADOS} informes antiguos eliminados"
+          git push
