@@ -8,14 +8,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
 
-        /* === RESET CRÍTICO PARA MÓVIL === */
+        /* === RESET & ESTRUCTURA === */
         html,
         body {
             margin: 0;
             padding: 0;
             max-width: 100vw;
             overflow-x: hidden;
-            /* PROHIBE SCROLL LATERAL */
         }
 
         body {
@@ -99,51 +98,54 @@
             font-weight: bold;
         }
 
-        /* === WRAPPER CENTRADO === */
+        /* === WRAPPER PRINCIPAL (V8: ANCHO RESTAURADO) === */
         .wrapper-center {
             display: flex;
             justify-content: center;
             width: 100%;
-            padding-top: 100px;
+            padding-top: 120px;
             padding-bottom: 50px;
         }
 
         .layout-wrapper {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
             display: flex;
-            gap: 40px;
+            gap: 50px;
+            width: 100%;
+            max-width: 1300px;
+            padding: 0 40px;
             box-sizing: border-box;
         }
 
-        /* COLUMNAS */
+        /* Vuelve a 1300px y gap 50px */
+
+        /* === COLUMNAS (V8: PROPORCIONES CLASSIC) === */
         .main-col {
             flex: 3;
             background: #fff;
             padding: 50px;
             border-radius: 12px;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.04);
-            max-width: 850px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.06);
             width: 100%;
-            box-sizing: border-box;
         }
 
+        /* SIDEBAR ROBUSTA (V2 STYLE) */
         .side-col {
             flex: 1;
-            min-width: 260px;
-            max-width: 320px;
+            min-width: 320px;
+            max-width: 400px;
         }
 
-        /* SIDEBAR (V2 RESTAURADA) */
+        /* Ancho forzado para que no encoja */
+
+        /* === COMPONENTES SIDEBAR (V2 EXACTA) === */
         .sticky-summary {
             position: sticky;
-            top: 90px;
+            top: 110px;
             background: #111;
             color: #fff;
-            padding: 25px;
+            padding: 30px;
             border-radius: 8px;
-            border-top: 5px solid #ff4d00;
+            border-top: 6px solid #ff4d00;
         }
 
         .sidebar-title {
@@ -151,9 +153,9 @@
             color: #ff4d00;
             margin-top: 0;
             text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
         }
 
         .summary-list {
@@ -163,17 +165,20 @@
 
         .summary-list li {
             margin-bottom: 12px;
-            font-size: 0.85rem;
+            font-size: 0.95rem;
             line-height: 1.5;
-            color: #bbb;
+            color: #ccc;
             border-bottom: 1px dashed #333;
             padding-bottom: 8px;
             display: list-item;
         }
 
+        /* Letra un pelín más grande (0.95) como antes */
+
+        /* CAJA SENTIMIENTO RESTAURADA */
         .action-box {
             margin-top: 30px;
-            padding: 15px;
+            padding: 20px;
             background: #222;
             border-radius: 4px;
             text-align: center;
@@ -182,39 +187,119 @@
 
         .trend-text {
             color: #ff4d00;
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 800;
             font-family: 'Space Grotesk';
             line-height: 1;
+            margin-bottom: 5px;
         }
 
-        /* CONTENT */
+        .trend-label {
+            font-size: 0.75rem;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* === ESTILOS INFORME (V7 MANTENIDOS) === */
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
-            font-size: 2.5rem;
-            letter-spacing: -1px;
+            font-size: 2.8rem;
+            letter-spacing: -1.5px;
             margin-top: 0;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #000;
-            overflow-wrap: break-word;
+            word-wrap: break-word;
         }
 
-        /* break-word evita desbordes en títulos largos */
+        .sentiment-badge {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .intro-lead {
+            font-size: 1.25rem;
+            color: #555;
+            margin-bottom: 30px;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .subhead {
+            font-family: 'Space Grotesk';
+            font-size: 1.8rem;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            color: #111;
+            font-weight: 700;
+            border-left: 5px solid #ff4d00;
+            padding-left: 15px;
+        }
+
+        .divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 40px 0;
+        }
+
         .theme-box {
             background: #fafafa;
             border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-left: 4px solid #ff4d00;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ff4d00;
             position: relative;
             transition: transform 0.2s;
             width: 100%;
             box-sizing: border-box;
         }
 
-        /* HISTORIAL COMPLETO (RESTAURADO) */
+        .theme-number {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 4rem;
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            color: #e5e5e5;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .theme-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .theme-content h3 {
+            font-family: 'Space Grotesk';
+            font-size: 1.5rem;
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 15px;
+            word-wrap: break-word;
+        }
+
+        .theme-content p {
+            color: #333;
+            margin: 0;
+            font-size: 1.1rem;
+            word-wrap: break-word;
+        }
+
+        /* === HISTORIAL (V7 REPARADO) === */
         #archive-view {
             display: none;
             max-width: 900px;
@@ -254,7 +339,6 @@
             max-width: 100%;
         }
 
-        /* Bola naranja restaurada */
         .report-card-dark::before {
             content: '';
             position: absolute;
@@ -326,18 +410,20 @@
             }
         }
 
-        /* === 📱 MÓVIL (V7 REPARADO) === */
-        @media (max-width: 768px) {
+        /* === 📱 MÓVIL (V8 = V7 OPTIMIZADA) === */
+        @media (max-width: 900px) {
+
+            /* Subido a 900px para tables tb */
             .wrapper-center {
                 padding-top: 80px;
             }
 
             .nav-fixed {
-                padding: 10px 15px;
+                padding: 15px 20px;
             }
 
             .brand {
-                font-size: 0.8rem;
+                font-size: 0.9rem;
             }
 
             .nav-btn {
@@ -347,7 +433,6 @@
             }
 
             .layout-wrapper {
-                display: flex;
                 flex-direction: column;
                 gap: 30px;
                 padding: 0 15px;
@@ -359,6 +444,7 @@
             }
 
             .side-col {
+                order: 2;
                 width: 100%;
                 max-width: 100%;
                 min-width: 0;
@@ -372,25 +458,28 @@
                 padding: 20px;
             }
 
-            /* Ajustes Historial en Móvil */
+            .theme-number {
+                font-size: 3rem;
+                top: 10px;
+                right: 15px;
+            }
+
+            /* Ajustes Historial */
             .archive-title {
                 font-size: 2.2rem;
             }
 
-            /* Asegurar que no se corte */
             .timeline {
                 padding-left: 25px;
                 margin-left: 5px;
             }
 
-            /* Más espacio para la bola */
             .report-card-dark::before {
                 left: -31px;
                 width: 10px;
                 height: 10px;
             }
 
-            /* Bola visible */
             .report-link-dark {
                 padding: 20px;
             }
@@ -403,8 +492,6 @@
                 display: block;
                 font-size: 1rem;
             }
-
-            /* Flecha visible pero pequeña */
         }
     </style>
 </head>
