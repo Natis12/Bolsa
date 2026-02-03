@@ -8,7 +8,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
 
-        /* === RESET & ESTRUCTURA === */
+        /* === RESET CRÍTICO GLOBAL V10 === */
+        * {
+            box-sizing: border-box;
+        }
+
+        /* ESTO EVITA DESBORDAMIENTOS LATERALES */
+
         html,
         body {
             margin: 0;
@@ -50,9 +56,7 @@
             padding: 15px 40px;
             display: flex;
             justify-content: space-between;
-            box-sizing: border-box;
             align-items: center;
-            transition: all 0.3s;
         }
 
         body.dark-mode .nav-fixed {
@@ -98,34 +102,35 @@
             font-weight: bold;
         }
 
-        /* === WRAPPER PRINCIPAL === */
+        /* === WRAPPER PRINCIPAL V10 === */
+        /* Contenedor Flex Vertical para centrar todo */
         .wrapper-center {
             display: flex;
             justify-content: center;
             width: 100%;
-            padding-top: 120px;
+            padding-top: 100px;
             padding-bottom: 50px;
         }
 
-        /* CONTENEDOR FLEX VERTICAL PARA INFORME + FOOTER */
         #latest-view {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
+            max-width: 100%;
         }
 
+        /* Layout Principal */
         .layout-wrapper {
             display: flex;
             gap: 50px;
             width: 100%;
             max-width: 1300px;
             padding: 0 40px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
-        /* === COLUMNAS === */
+        /* === COLUMNAS ESCRITORIO === */
         .main-col {
             flex: 3;
             background: #fff;
@@ -151,7 +156,6 @@
             border-radius: 8px;
             border-top: 6px solid #ff4d00;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .sidebar-title {
@@ -187,6 +191,7 @@
             border-radius: 8px;
             text-align: center;
             border: 1px solid #333;
+            width: 100%;
         }
 
         .trend-text {
@@ -267,7 +272,6 @@
             position: relative;
             transition: transform 0.2s;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .theme-number {
@@ -304,19 +308,15 @@
             word-wrap: break-word;
         }
 
-        /* === FOOTER V9 (FIXED) === */
-        /* Ahora está fuera del layout-wrapper para centrarse globalmente */
         .date-footer {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             padding-top: 20px;
             font-size: 0.75rem;
             color: #999;
             width: 100%;
             max-width: 600px;
-            /* Ancho máximo para que no se estire infinito */
             font-family: monospace;
-            /* Estilo técnico */
             border-top: 1px solid #ddd;
         }
 
@@ -327,7 +327,6 @@
             margin: 100px auto;
             padding: 0 20px;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .archive-title {
@@ -381,7 +380,6 @@
             color: white;
             border: 1px solid #333;
             transition: all 0.3s ease;
-            box-sizing: border-box;
         }
 
         .report-link-dark:hover {
@@ -431,9 +429,12 @@
             }
         }
 
-
-        /* === 📱 MÓVIL === */
+        /* === 📱 MÓVIL (V10 FIXED) === */
         @media (max-width: 900px) {
+            .wrapper-center {
+                padding-top: 80px;
+            }
+
             .nav-fixed {
                 padding: 15px 20px;
             }
@@ -442,15 +443,18 @@
                 font-size: 0.9rem;
             }
 
+            /* Contenedor central colapsado */
             .layout-wrapper {
                 flex-direction: column;
                 gap: 30px;
                 padding: 0 15px;
-                margin-top: 80px;
+                margin-top: 10px;
             }
 
+            /* Columnas 100% ancho siempre */
             .main-col {
                 padding: 25px 20px;
+                width: 100%;
                 max-width: 100%;
             }
 
@@ -476,6 +480,7 @@
                 position: static;
             }
 
+            /* Ajustes Historial */
             .archive-title {
                 font-size: 2.2rem;
             }
