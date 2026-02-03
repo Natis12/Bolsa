@@ -186,6 +186,7 @@
             text-align: center;
             border: 1px solid #333;
             width: 100%;
+            transition: all 0.3s ease;
         }
 
         /* === TREND TEXT (CON COLORES SEMAFORO V14) === */
@@ -199,11 +200,26 @@
         }
 
         .trend-text.alcista {
-            color: #00cc66;
+            color: #00ff55;
+            text-shadow: 0 0 10px rgba(0, 255, 85, 0.3);
         }
 
         .trend-text.bajista {
-            color: #ff3333;
+            color: #ff0000;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+
+        /* EL TRUCO MAGICO :has */
+        .action-box:has(.bajista) {
+            border-color: #ff0000;
+            background: rgba(255, 0, 0, 0.05);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+
+        .action-box:has(.alcista) {
+            border-color: #00ff55;
+            background: rgba(0, 255, 85, 0.05);
+            box-shadow: 0 0 20px rgba(0, 255, 85, 0.2);
         }
 
         .trend-label {
