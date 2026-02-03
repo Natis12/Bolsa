@@ -113,7 +113,6 @@
             max-width: 100%;
         }
 
-        /* Layout Principal */
         .layout-wrapper {
             display: flex;
             gap: 50px;
@@ -123,12 +122,11 @@
             margin-top: 20px;
         }
 
-        /* === COLUMNA PRINCIPAL (REFINADA V12) === */
+        /* === COLUMNA PRINCIPAL === */
         .main-col {
             flex: 3;
             background: #fff;
             padding: 50px;
-            /* Padding original en escritorio */
             border-radius: 12px;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.06);
             width: 100%;
@@ -204,14 +202,12 @@
             font-weight: 600;
         }
 
-        /* === ESTILOS INFORME (OPTIMIZADOS V12) === */
+        /* === ESTILOS INFORME === */
 
-        /* Titular más contenido */
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
             font-size: 2.4rem;
-            /* Reducido de 2.8rem */
             letter-spacing: -1px;
             margin-top: 0;
             line-height: 1.2;
@@ -234,10 +230,8 @@
             margin-bottom: 15px;
         }
 
-        /* Intro más limpia */
         .intro-lead {
             font-size: 1.1rem;
-            /* Reducido de 1.25rem */
             color: #444;
             margin-bottom: 30px;
             font-weight: 400;
@@ -261,12 +255,10 @@
             margin: 30px 0;
         }
 
-        /* Cajas de Temas más compactas */
         .theme-box {
             background: #fafafa;
             border-radius: 8px;
             padding: 25px;
-            /* Reducido de 30px */
             margin-bottom: 20px;
             border-left: 4px solid #ff4d00;
             position: relative;
@@ -278,7 +270,6 @@
             right: 20px;
             top: 15px;
             font-size: 3rem;
-            /* Reducido de 4rem para que no moleste */
             font-family: 'Space Grotesk';
             font-weight: 700;
             color: #eaeaea;
@@ -295,7 +286,6 @@
         .theme-content h3 {
             font-family: 'Space Grotesk';
             font-size: 1.3rem;
-            /* Reducido de 1.5rem */
             color: #000;
             margin-top: 0;
             margin-bottom: 10px;
@@ -307,11 +297,52 @@
             color: #333;
             margin: 0;
             font-size: 1rem;
-            /* Reducido de 1.1rem */
             line-height: 1.7;
-            /* Mejor lectura */
             word-wrap: break-word;
         }
+
+        /* === 🔥 NUEVO VEREDICTO PREMIUM V13 === */
+        .verdict-box {
+            background: #fffcf9;
+            /* Fondo muy suave casi blanco */
+            background: linear-gradient(135deg, #fff8f2 0%, #fff 100%);
+            /* Degradado sutil */
+            border: 1px solid #ffdfc9;
+            /* Borde naranja pastel */
+            border-left: 6px solid #ff4d00;
+            /* Borde fuerte a la izquierda */
+            border-radius: 8px;
+            /* Bordes menos redondeados para seriedad */
+            padding: 30px;
+            margin-top: 50px;
+            box-shadow: 0 10px 40px -10px rgba(255, 77, 0, 0.1);
+            /* Sombra naranja difusa */
+            width: 100%;
+        }
+
+        .verdict-box h3 {
+            font-family: 'Space Grotesk';
+            color: #ff4d00;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+
+        .verdict-box .conclusion {
+            font-size: 1.15rem;
+            /* Letra un poco más grande */
+            color: #1a1a1a;
+            font-weight: 500;
+            line-height: 1.6;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
 
         .date-footer {
             text-align: center;
@@ -434,7 +465,7 @@
             }
         }
 
-        /* === 📱 MÓVIL (V12 REFINADO) === */
+        /* === 📱 MÓVIL (V13 REFINADO + REVERSE) === */
         @media (max-width: 900px) {
             .wrapper-center {
                 padding-top: 80px;
@@ -457,7 +488,6 @@
 
             .main-col {
                 padding: 30px 20px;
-                /* Menos padding en móvil */
                 width: 100%;
                 max-width: 100%;
                 order: 2;
@@ -470,7 +500,6 @@
                 order: 1;
             }
 
-            /* Ajustes extra de tipografía para móvil */
             .headline {
                 font-size: 1.6rem;
                 letter-spacing: -0.5px;
@@ -487,6 +516,15 @@
                 padding-left: 10px;
                 border-left-width: 3px;
                 margin-top: 30px;
+            }
+
+            .verdict-box {
+                padding: 20px;
+                margin-top: 30px;
+            }
+
+            .verdict-box .conclusion {
+                font-size: 1rem;
             }
 
             .theme-content h3 {
