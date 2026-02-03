@@ -42,6 +42,7 @@
             min-height: 100vh;
         }
 
+        /* === NAV === */
         .nav-fixed {
             position: fixed;
             top: 0;
@@ -97,6 +98,7 @@
             font-weight: bold;
         }
 
+        /* === LAYOUT === */
         .wrapper-center {
             display: flex;
             justify-content: center;
@@ -138,6 +140,7 @@
             max-width: 400px;
         }
 
+        /* === SIDEBAR === */
         .sticky-summary {
             position: sticky;
             top: 110px;
@@ -185,6 +188,7 @@
             width: 100%;
         }
 
+        /* === TREND TEXT (CON COLORES SEMAFORO V14) === */
         .trend-text {
             color: #ff4d00;
             font-size: 2.2rem;
@@ -192,6 +196,14 @@
             font-family: 'Space Grotesk';
             line-height: 1;
             margin-bottom: 5px;
+        }
+
+        .trend-text.alcista {
+            color: #00cc66;
+        }
+
+        .trend-text.bajista {
+            color: #ff3333;
         }
 
         .trend-label {
@@ -203,7 +215,6 @@
         }
 
         /* === ESTILOS INFORME === */
-
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
@@ -301,22 +312,16 @@
             word-wrap: break-word;
         }
 
-        /* === 🔥 NUEVO VEREDICTO PREMIUM V13 === */
+        /* === VEREDICTO === */
         .verdict-box {
             background: #fffcf9;
-            /* Fondo muy suave casi blanco */
             background: linear-gradient(135deg, #fff8f2 0%, #fff 100%);
-            /* Degradado sutil */
             border: 1px solid #ffdfc9;
-            /* Borde naranja pastel */
             border-left: 6px solid #ff4d00;
-            /* Borde fuerte a la izquierda */
             border-radius: 8px;
-            /* Bordes menos redondeados para seriedad */
             padding: 30px;
             margin-top: 50px;
             box-shadow: 0 10px 40px -10px rgba(255, 77, 0, 0.1);
-            /* Sombra naranja difusa */
             width: 100%;
         }
 
@@ -335,14 +340,12 @@
 
         .verdict-box .conclusion {
             font-size: 1.15rem;
-            /* Letra un poco más grande */
             color: #1a1a1a;
             font-weight: 500;
             line-height: 1.6;
             margin: 0;
             font-family: 'Inter', sans-serif;
         }
-
 
         .date-footer {
             text-align: center;
@@ -465,7 +468,7 @@
             }
         }
 
-        /* === 📱 MÓVIL (V13 REFINADO + REVERSE) === */
+        /* === 📱 MÓVIL (SIDEBAR FIRST) === */
         @media (max-width: 900px) {
             .wrapper-center {
                 padding-top: 80px;
@@ -491,6 +494,7 @@
                 width: 100%;
                 max-width: 100%;
                 order: 2;
+                /* Informe DEBAJO */
             }
 
             .side-col {
@@ -498,6 +502,7 @@
                 max-width: 100%;
                 min-width: 0;
                 order: 1;
+                /* Sidebar ENCIMA */
             }
 
             .headline {
