@@ -1,0 +1,39 @@
+name: 🧹 Limpieza de Informes Antiguos
+
+on:
+  schedule:
+    # Se ejecuta todos los días a las 00:00 UTC
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    # Permite ejecutarlo manualmente desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:-
+  delete-old-reports:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Clonar Repositorio
+        uses: actions/checkout@v4
+
+      - name: 🗑️ Borrar archivos html de más de 30 días
+        run: |
+          # Configurar Git
+          git config --global user.name "Limpiador Automático"
+          git config --global user.email "bot@github.com"
+          
+          # Buscar y borrar archivos informe-*.html más antiguos de 30 días
+          # -mtime +30 significa "modificado hace más de 30 días"
+          find . -name "informe-*.html" -type f -mtime +30 -exec rm {} \;
+          
+          # Verificar si hay cambios para confirmar
+          if [[ `git status --porcelain` ]]; then
+            echo "Archivos antiguos detectados y borrados locally."
+            git add .
+            git commit -m "🧹 Limpieza automática: Informes > 30 días eliminados"
+            git push
+            echo "✅ Cambios subidos al repo."
+          else
+            echo "✨ No hay archivos antiguos para borrar hoy."
+          fi
