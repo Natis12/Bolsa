@@ -98,13 +98,21 @@
             font-weight: bold;
         }
 
-        /* === WRAPPER PRINCIPAL (V8: ANCHO RESTAURADO) === */
+        /* === WRAPPER PRINCIPAL === */
         .wrapper-center {
             display: flex;
             justify-content: center;
             width: 100%;
             padding-top: 120px;
             padding-bottom: 50px;
+        }
+
+        /* CONTENEDOR FLEX VERTICAL PARA INFORME + FOOTER */
+        #latest-view {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
         }
 
         .layout-wrapper {
@@ -114,11 +122,10 @@
             max-width: 1300px;
             padding: 0 40px;
             box-sizing: border-box;
+            margin-bottom: 20px;
         }
 
-        /* Vuelve a 1300px y gap 50px */
-
-        /* === COLUMNAS (V8: PROPORCIONES CLASSIC) === */
+        /* === COLUMNAS === */
         .main-col {
             flex: 3;
             background: #fff;
@@ -128,16 +135,13 @@
             width: 100%;
         }
 
-        /* SIDEBAR ROBUSTA (V2 STYLE) */
         .side-col {
             flex: 1;
             min-width: 320px;
             max-width: 400px;
         }
 
-        /* Ancho forzado para que no encoja */
-
-        /* === COMPONENTES SIDEBAR (V2 EXACTA) === */
+        /* SIDEBAR ROBUSTA */
         .sticky-summary {
             position: sticky;
             top: 110px;
@@ -146,6 +150,8 @@
             padding: 30px;
             border-radius: 8px;
             border-top: 6px solid #ff4d00;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .sidebar-title {
@@ -171,16 +177,14 @@
             border-bottom: 1px dashed #333;
             padding-bottom: 8px;
             display: list-item;
+            word-wrap: break-word;
         }
 
-        /* Letra un pelín más grande (0.95) como antes */
-
-        /* CAJA SENTIMIENTO RESTAURADA */
         .action-box {
             margin-top: 30px;
             padding: 20px;
             background: #222;
-            border-radius: 4px;
+            border-radius: 8px;
             text-align: center;
             border: 1px solid #333;
         }
@@ -202,7 +206,7 @@
             font-weight: 600;
         }
 
-        /* === ESTILOS INFORME (V7 MANTENIDOS) === */
+        /* ESTILOS INFORME */
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
@@ -275,6 +279,7 @@
             font-weight: 700;
             color: #e5e5e5;
             line-height: 1;
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -299,7 +304,23 @@
             word-wrap: break-word;
         }
 
-        /* === HISTORIAL (V7 REPARADO) === */
+        /* === FOOTER V9 (FIXED) === */
+        /* Ahora está fuera del layout-wrapper para centrarse globalmente */
+        .date-footer {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-top: 20px;
+            font-size: 0.75rem;
+            color: #999;
+            width: 100%;
+            max-width: 600px;
+            /* Ancho máximo para que no se estire infinito */
+            font-family: monospace;
+            /* Estilo técnico */
+            border-top: 1px solid #ddd;
+        }
+
+        /* === HISTORIAL === */
         #archive-view {
             display: none;
             max-width: 900px;
@@ -410,14 +431,9 @@
             }
         }
 
-        /* === 📱 MÓVIL (V8 = V7 OPTIMIZADA) === */
+
+        /* === 📱 MÓVIL === */
         @media (max-width: 900px) {
-
-            /* Subido a 900px para tables tb */
-            .wrapper-center {
-                padding-top: 80px;
-            }
-
             .nav-fixed {
                 padding: 15px 20px;
             }
@@ -426,16 +442,11 @@
                 font-size: 0.9rem;
             }
 
-            .nav-btn {
-                padding: 4px 8px;
-                font-size: 0.7rem;
-                margin-left: 5px;
-            }
-
             .layout-wrapper {
                 flex-direction: column;
                 gap: 30px;
                 padding: 0 15px;
+                margin-top: 80px;
             }
 
             .main-col {
@@ -452,19 +463,19 @@
 
             .headline {
                 font-size: 1.8rem;
+                letter-spacing: -0.5px;
             }
 
-            .theme-box {
-                padding: 20px;
+            .subhead {
+                font-size: 1.4rem;
+                padding-left: 10px;
+                border-left-width: 3px;
             }
 
-            .theme-number {
-                font-size: 3rem;
-                top: 10px;
-                right: 15px;
+            .sticky-summary {
+                position: static;
             }
 
-            /* Ajustes Historial */
             .archive-title {
                 font-size: 2.2rem;
             }
@@ -482,15 +493,6 @@
 
             .report-link-dark {
                 padding: 20px;
-            }
-
-            .report-title-dark {
-                font-size: 1.3rem;
-            }
-
-            .arrow {
-                display: block;
-                font-size: 1rem;
             }
         }
     </style>
@@ -546,7 +548,7 @@
                 if (footer) container.appendChild(footer);
                 loading.style.display = 'none';
                 if (document.body.classList.contains('light-mode')) {
-                    container.style.display = 'block'; document.querySelector('.wrapper-center').style.display = 'flex';
+                    container.style.display = 'flex'; document.querySelector('.wrapper-center').style.display = 'flex';
                 }
             } catch (error) { console.error('Error', error); }
         }
@@ -569,7 +571,7 @@
         }
         function showLatest() {
             document.querySelector('.wrapper-center').style.display = 'flex';
-            document.getElementById('latest-view').style.display = 'block';
+            document.getElementById('latest-view').style.display = 'flex';
             document.getElementById('archive-view').style.display = 'none';
             document.body.classList.replace('dark-mode', 'light-mode');
             document.getElementById('btn-latest').classList.add('active'); document.getElementById('btn-archive').classList.remove('active');
