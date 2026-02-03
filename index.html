@@ -8,12 +8,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
 
-        /* === RESET CRÍTICO GLOBAL V10 === */
         * {
             box-sizing: border-box;
         }
-
-        /* ESTO EVITA DESBORDAMIENTOS LATERALES */
 
         html,
         body {
@@ -38,7 +35,6 @@
             color: #f4f4f0;
         }
 
-        /* CENTRADO ESCRITORIO */
         body {
             display: flex;
             flex-direction: column;
@@ -46,7 +42,6 @@
             min-height: 100vh;
         }
 
-        /* === NAV === */
         .nav-fixed {
             position: fixed;
             top: 0;
@@ -102,8 +97,6 @@
             font-weight: bold;
         }
 
-        /* === WRAPPER PRINCIPAL V10 === */
-        /* Contenedor Flex Vertical para centrar todo */
         .wrapper-center {
             display: flex;
             justify-content: center;
@@ -130,11 +123,12 @@
             margin-top: 20px;
         }
 
-        /* === COLUMNAS ESCRITORIO === */
+        /* === COLUMNA PRINCIPAL (REFINADA V12) === */
         .main-col {
             flex: 3;
             background: #fff;
             padding: 50px;
+            /* Padding original en escritorio */
             border-radius: 12px;
             box-shadow: 0 5px 30px rgba(0, 0, 0, 0.06);
             width: 100%;
@@ -146,7 +140,6 @@
             max-width: 400px;
         }
 
-        /* SIDEBAR ROBUSTA */
         .sticky-summary {
             position: sticky;
             top: 110px;
@@ -211,15 +204,18 @@
             font-weight: 600;
         }
 
-        /* ESTILOS INFORME */
+        /* === ESTILOS INFORME (OPTIMIZADOS V12) === */
+
+        /* Titular más contenido */
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
-            font-size: 2.8rem;
-            letter-spacing: -1.5px;
+            font-size: 2.4rem;
+            /* Reducido de 2.8rem */
+            letter-spacing: -1px;
             margin-top: 0;
-            line-height: 1.1;
-            margin-bottom: 25px;
+            line-height: 1.2;
+            margin-bottom: 20px;
             color: #000;
             word-wrap: break-word;
         }
@@ -227,9 +223,9 @@
         .sentiment-badge {
             display: inline-block;
             background: #f0f0f0;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
             font-weight: 700;
             color: #555;
             text-transform: uppercase;
@@ -238,50 +234,54 @@
             margin-bottom: 15px;
         }
 
+        /* Intro más limpia */
         .intro-lead {
-            font-size: 1.25rem;
-            color: #555;
+            font-size: 1.1rem;
+            /* Reducido de 1.25rem */
+            color: #444;
             margin-bottom: 30px;
-            font-weight: 300;
+            font-weight: 400;
             line-height: 1.6;
         }
 
         .subhead {
             font-family: 'Space Grotesk';
-            font-size: 1.8rem;
-            margin-top: 50px;
-            margin-bottom: 25px;
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
             color: #111;
             font-weight: 700;
-            border-left: 5px solid #ff4d00;
+            border-left: 4px solid #ff4d00;
             padding-left: 15px;
         }
 
         .divider {
             border: 0;
             border-top: 1px solid #eee;
-            margin: 40px 0;
+            margin: 30px 0;
         }
 
+        /* Cajas de Temas más compactas */
         .theme-box {
             background: #fafafa;
             border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 25px;
-            border-left: 5px solid #ff4d00;
+            padding: 25px;
+            /* Reducido de 30px */
+            margin-bottom: 20px;
+            border-left: 4px solid #ff4d00;
             position: relative;
-            transition: transform 0.2s;
             width: 100%;
         }
 
         .theme-number {
             position: absolute;
-            right: 25px;
-            top: 20px;
-            font-size: 4rem;
+            right: 20px;
+            top: 15px;
+            font-size: 3rem;
+            /* Reducido de 4rem para que no moleste */
             font-family: 'Space Grotesk';
             font-weight: 700;
-            color: #e5e5e5;
+            color: #eaeaea;
             line-height: 1;
             z-index: 1;
             pointer-events: none;
@@ -294,17 +294,22 @@
 
         .theme-content h3 {
             font-family: 'Space Grotesk';
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            /* Reducido de 1.5rem */
             color: #000;
             margin-top: 0;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             word-wrap: break-word;
+            font-weight: 700;
         }
 
         .theme-content p {
             color: #333;
             margin: 0;
-            font-size: 1.1rem;
+            font-size: 1rem;
+            /* Reducido de 1.1rem */
+            line-height: 1.7;
+            /* Mejor lectura */
             word-wrap: break-word;
         }
 
@@ -429,7 +434,7 @@
             }
         }
 
-        /* === 📱 MÓVIL (V10 FIXED + REVERSE) === */
+        /* === 📱 MÓVIL (V12 REFINADO) === */
         @media (max-width: 900px) {
             .wrapper-center {
                 padding-top: 80px;
@@ -443,7 +448,6 @@
                 font-size: 0.9rem;
             }
 
-            /* Contenedor central colapsado */
             .layout-wrapper {
                 flex-direction: column;
                 gap: 30px;
@@ -451,13 +455,12 @@
                 margin-top: 10px;
             }
 
-            /* Columnas 100% ancho siempre */
             .main-col {
-                padding: 25px 20px;
+                padding: 30px 20px;
+                /* Menos padding en móvil */
                 width: 100%;
                 max-width: 100%;
                 order: 2;
-                /* Informe DEBAJO */
             }
 
             .side-col {
@@ -465,25 +468,45 @@
                 max-width: 100%;
                 min-width: 0;
                 order: 1;
-                /* Sidebar ENCIMA */
             }
 
+            /* Ajustes extra de tipografía para móvil */
             .headline {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
                 letter-spacing: -0.5px;
+                margin-bottom: 15px;
+            }
+
+            .intro-lead {
+                font-size: 1rem;
+                line-height: 1.5;
             }
 
             .subhead {
-                font-size: 1.4rem;
+                font-size: 1.3rem;
                 padding-left: 10px;
                 border-left-width: 3px;
+                margin-top: 30px;
+            }
+
+            .theme-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .theme-content p {
+                font-size: 0.95rem;
+            }
+
+            .theme-number {
+                font-size: 2.5rem;
+                top: 10px;
+                right: 15px;
             }
 
             .sticky-summary {
                 position: static;
             }
 
-            /* Ajustes Historial */
             .archive-title {
                 font-size: 2.2rem;
             }
