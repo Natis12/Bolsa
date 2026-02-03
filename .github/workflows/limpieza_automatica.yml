@@ -1,4 +1,4 @@
-name: Limpieza por Cantidad
+name: Limpieza Inteligente (Por Fecha Real)
 
 on:
   schedule:
@@ -15,34 +15,54 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Mantener solo los últimos 20 informes
+      - name: Borrar antiguos ordenando por fecha real
         shell: python
         run: |
           import os
+          import re
+          from datetime import datetime
           
-          # CONFIGURACIÓN: Cuántos informes quieres guardar
+          # CONFIGURACIÓN
           KEEP_LAST = 20  
           
-          print(f"🧹 Iniciando limpieza. Se mantendrán solo los {KEEP_LAST} informes más recientes.")
+          print(f"🧹 Buscando informes. Se mantendrán los {KEEP_LAST} más recientes (por fecha real).")
           
-          # Listar y ordenar archivos (por nombre, que incluye la fecha)
-          archivos = [f for f in os.listdir('.') if f.startswith("informe-") and f.endswith(".html")]
-          archivos.sort() # Ordena del más antiguo al más nuevo
+          valid_files = []
           
-          # Identificar cuáles sobran
-          if len(archivos) > KEEP_LAST:
-              sobran = archivos[:-KEEP_LAST] # Todos menos los últimos 20
-              print(f"⚠️ Se han encontrado {len(archivos)} informes. Borrando {len(sobran)} antiguos...")
+          # 1. Buscamos archivos y extraemos su fecha real del nombre
+          for f in os.listdir('.'):
+              # Patrón: informe-dia-mes-año-hora-min.html
+              match = re.match(r'informe-(\d{2})-(\d{2})-(\d{4})-(\d{2})-(\d{2})\.html', f)
               
-              for f in sobran:
-                  print(f"🗑️ Eliminando: {f}")
-                  os.remove(f)
+              if match:
+                  d, m, y, h, min = map(int, match.groups())
+                  try:
+                      # Creamos fecha real para ordenar correctamente
+                      dt = datetime(y, m, d, h, min)
+                      valid_files.append({'name': f, 'date': dt})
+                  except ValueError:
+                      continue
+
+          # 2. Ordenamos por fecha (de más viejo a más nuevo)
+          valid_files.sort(key=lambda x: x['date'])
+          
+          # 3. Decidimos cuáles sobran
+          if len(valid_files) > KEEP_LAST:
+              # Guardamos solo los últimos KEEP_LAST
+              sobran = valid_files[:-KEEP_LAST]
               
-              # Guardamos variable para el commit
+              print(f"found Found {len(valid_files)} reports. Deleting {len(sobran)} old ones...")
+              
+              borrados_count = 0
+              for item in sobran:
+                  print(f"🗑️ Eliminando: {item['name']} (Fecha: {item['date']})")
+                  os.remove(item['name'])
+                  borrados_count += 1
+                  
               with open(os.environ['GITHUB_ENV'], 'a') as f:
-                  f.write(f"BORRADOS={len(sobran)}\n")
+                  f.write(f"BORRADOS={borrados_count}\n")
           else:
-              print(f"✅ Todo limpio. Hay {len(archivos)} informes (Límite: {KEEP_LAST}).")
+              print(f"✅ Todo limpio. Hay {len(valid_files)} informes.")
               with open(os.environ['GITHUB_ENV'], 'a') as f:
                   f.write(f"BORRADOS=0\n")
 
@@ -52,5 +72,5 @@ jobs:
           git config --global user.name "Bot Limpieza"
           git config --global user.email "bot@github.com"
           git add .
-          git commit -m "Auto limpieza: Exceso de informes eliminado"
+          git commit -m "Auto limpieza: Borrados informes antiguos por fecha"
           git push
