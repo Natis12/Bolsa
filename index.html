@@ -26,7 +26,14 @@
             color: #f4f4f0;
         }
 
-        /* === NAV === */
+        /* === CENTRADO ESCRITORIO (V4) === */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
         .nav-fixed {
             position: fixed;
             top: 0;
@@ -84,15 +91,12 @@
             font-weight: bold;
         }
 
-        /* === CONTENEDOR CENTRADO FLEX === */
-        /* Nuevo wrapper para forzar el centro horizontalmente */
+        /* Wrapper Centrador */
         .wrapper-center {
             display: flex;
             justify-content: center;
-            /* ESTO CENTRA TODO */
             width: 100%;
             padding-top: 100px;
-            /* Espacio para el nav */
             padding-bottom: 50px;
         }
 
@@ -103,7 +107,6 @@
             display: flex;
             gap: 40px;
             box-sizing: border-box;
-            /* Quitamos margin:auto de aquí porque ya lo centra el padre wrapper-center */
         }
 
         .main-col {
@@ -121,7 +124,6 @@
             max-width: 320px;
         }
 
-        /* SIDEBAR CLÁSICA */
         .sticky-summary {
             position: sticky;
             top: 90px;
@@ -182,7 +184,7 @@
             text-transform: uppercase;
         }
 
-        /* NUEVOS ESTILOS DEL INFORME */
+        /* Estilos Informe */
         .headline {
             font-family: 'Inter', sans-serif;
             font-weight: 800;
@@ -243,11 +245,6 @@
             transition: transform 0.2s;
         }
 
-        .theme-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-        }
-
         .theme-number {
             position: absolute;
             right: 20px;
@@ -257,6 +254,7 @@
             font-weight: 700;
             color: #e5e5e5;
             line-height: 1;
+            z-index: 1;
             pointer-events: none;
         }
 
@@ -273,12 +271,6 @@
             margin-bottom: 10px;
         }
 
-        .theme-content p {
-            color: #333;
-            margin: 0;
-            font-size: 1rem;
-        }
-
         .date-footer {
             text-align: center;
             margin-bottom: 20px;
@@ -287,24 +279,13 @@
             margin-top: 30px;
         }
 
-        @media(max-width: 900px) {
-            .layout-wrapper {
-                flex-direction: column;
-            }
-
-            .side-col {
-                order: -1;
-                width: 100%;
-                max-width: none;
-            }
-        }
-
-        /* HISTORIAL (DARK MODE MONOCLE) */
+        /* HISTORIAL */
         #archive-view {
             display: none;
             max-width: 900px;
             margin: 100px auto;
             padding: 0 20px;
+            width: 100%;
         }
 
         .archive-title {
@@ -360,17 +341,10 @@
             transition: all 0.3s ease;
         }
 
-        .report-link-dark:hover {
-            transform: translateX(10px);
-            border-color: #ff4d00;
-            background: #222;
-        }
-
         .report-title-dark {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 5px;
             display: block;
             color: white;
         }
@@ -378,21 +352,6 @@
         .highlight-time {
             color: #ff4d00;
             font-weight: bold;
-        }
-
-        .arrow {
-            float: right;
-            color: #ff4d00;
-            font-size: 1.2rem;
-            font-weight: bold;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s;
-        }
-
-        .report-link-dark:hover .arrow {
-            opacity: 1;
-            transform: translateX(0);
         }
 
         #loading {
@@ -409,24 +368,104 @@
                 opacity: 0.5;
             }
         }
+
+
+        /* === 📱 MEDIA QUERIES PARA MÓVIL (NO AFECTA A ESCRITORIO V4) === */
+        @media (max-width: 768px) {
+
+            /* Ajuste del Nav */
+            .nav-fixed {
+                padding: 15px 20px;
+                justify-content: space-between;
+            }
+
+            .brand {
+                font-size: 0.9rem;
+            }
+
+            .nav-btn {
+                font-size: 0.7rem;
+                padding: 5px 10px;
+                margin-left: 5px;
+            }
+
+            /* Ajuste de Columnas (Colapsar) */
+            .layout-wrapper {
+                flex-direction: column;
+                /* Pone uno debajo de otro */
+                gap: 30px;
+                padding: 0 15px;
+                /* Menos padding lateral */
+            }
+
+            /* Main Column - Ocupar todo el ancho */
+            .main-col {
+                padding: 25px;
+                /* Menos padding interno */
+                width: 100%;
+                max-width: none;
+            }
+
+            /* Sidebar - Poner abajo */
+            .side-col {
+                order: 2;
+                /* Fuerza a ir abajo */
+                width: 100%;
+                max-width: none;
+                margin-bottom: 50px;
+            }
+
+            /* Texto más pequeño */
+            .headline {
+                font-size: 1.8rem;
+                letter-spacing: -0.5px;
+            }
+
+            .subhead {
+                font-size: 1.4rem;
+                padding-left: 10px;
+                border-left-width: 3px;
+            }
+
+            .intro-lead {
+                font-size: 1rem;
+            }
+
+            /* Archivo lista */
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .report-card-dark::before {
+                left: -26px;
+            }
+
+            .archive-title {
+                font-size: 2.2rem;
+            }
+
+            .archive-subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 40px;
+            }
+        }
     </style>
 </head>
 
 <body class="light-mode">
+
     <div class="nav-fixed">
         <div class="brand">/// SERGIO BOLSA</div>
         <div>
-            <button class="nav-btn active" id="btn-latest" onclick="showLatest()">🔥 Último Informe</button>
-            <button class="nav-btn" id="btn-archive" onclick="showArchive()">📂 Centro de Informes</button>
+            <button class="nav-btn active" id="btn-latest" onclick="showLatest()">🔥 Último</button>
+            <button class="nav-btn" id="btn-archive" onclick="showArchive()">📂 Archivo</button>
         </div>
     </div>
-    <div id="loading">Conectando base de datos...</div>
+    <div id="loading">Conectando...</div>
 
-    <!-- WRAPPER CENTER FUERZA EL CENTRADO -->
     <div class="wrapper-center">
         <div id="latest-view"></div>
     </div>
-
     <div id="archive-view">
         <h1 class="archive-title">Centro de<br>Informes</h1>
         <div class="archive-subtitle">Análisis de Mercado Diario</div>
@@ -443,9 +482,8 @@
                 const data = await response.json();
                 allReports = data.filter(f => f.name.startsWith('informe-') && f.name.endsWith('.html')).sort((a, b) => b.name.localeCompare(a.name));
                 renderArchive();
-                if (allReports.length > 0) {
-                    await loadReportContent(allReports[0].download_url);
-                } else { document.getElementById('loading').innerText = 'No hay informes.'; }
+                if (allReports.length > 0) { await loadReportContent(allReports[0].download_url); }
+                else { document.getElementById('loading').innerText = 'No hay informes.'; }
             } catch (error) { document.getElementById('loading').innerText = 'Error GitHub API.'; }
         }
         async function loadReportContent(url) {
@@ -456,20 +494,14 @@
                 const htmlText = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(htmlText, 'text/html');
-                // Intentamos coger SOLO la layout-wrapper
                 const content = doc.querySelector('.layout-wrapper');
-                // IMPORTANTE: Si cogemos la wrapper, asegurarnos que NO rompemos el centrado
                 container.innerHTML = '';
-                if (content) { container.appendChild(content); }
-                else { container.innerHTML = doc.body.innerHTML; }
-
+                if (content) { container.appendChild(content); } else { container.innerHTML = doc.body.innerHTML; }
                 const footer = doc.querySelector('.date-footer');
                 if (footer) container.appendChild(footer);
-
                 loading.style.display = 'none';
                 if (document.body.classList.contains('light-mode')) {
-                    container.style.display = 'block'; // Block porque está dentro del wrapper flex
-                    document.querySelector('.wrapper-center').style.display = 'flex';
+                    container.style.display = 'block'; document.querySelector('.wrapper-center').style.display = 'flex';
                 }
             } catch (error) { console.error('Error', error); }
         }
@@ -490,16 +522,14 @@
             document.getElementById('latest-view').style.display = 'block';
             document.getElementById('archive-view').style.display = 'none';
             document.body.classList.replace('dark-mode', 'light-mode');
-            document.getElementById('btn-latest').classList.add('active');
-            document.getElementById('btn-archive').classList.remove('active');
+            document.getElementById('btn-latest').classList.add('active'); document.getElementById('btn-archive').classList.remove('active');
         }
         function showArchive() {
             document.querySelector('.wrapper-center').style.display = 'none';
             document.getElementById('latest-view').style.display = 'none';
             document.getElementById('archive-view').style.display = 'block';
             document.body.classList.replace('light-mode', 'dark-mode');
-            document.getElementById('btn-latest').classList.remove('active');
-            document.getElementById('btn-archive').classList.add('active');
+            document.getElementById('btn-latest').classList.remove('active'); document.getElementById('btn-archive').classList.add('active');
         }
         init();
     </script>
