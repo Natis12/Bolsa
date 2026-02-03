@@ -617,7 +617,14 @@
             try {
                 const response = await fetch(`https://api.github.com/repos/${user}/${repo}/contents/`);
                 const data = await response.json();
-                allReports = data.filter(f => f.name.startsWith('informe-') && f.name.endsWith('.html')).sort((a, b) => b.name.localeCompare(a.name));
+                // Filtramos por nombre y ordenamos del más nuevo al más antiguo
+                allReports = data.filter(f => f.name.startsWith('informe-') && f.name.endsWith('.html'))
+                    .sort((a, b) => b.name.localeCompare(a.name));
+
+                // 🛑 LÍMITE DE VISUALIZACIÓN:
+                // Solo mostramos los últimos 50 informes para que la web no pese
+                allReports = allReports.slice(0, 50);
+
                 renderArchive();
                 if (allReports.length > 0) { await loadReportContent(allReports[0].download_url); }
                 else { document.getElementById('loading').innerText = 'No hay informes.'; }
