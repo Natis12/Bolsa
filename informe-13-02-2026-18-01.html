@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sergio Bolsa - Informe</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f4f4;
+            color: #111;
+            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* === NAV === */
+        .nav-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #000;
+        }
+
+        .brand {
+            color: #ff4d00;
+            font-family: 'Space Grotesk';
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-fixed a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        /* === LAYOUT === */
+        .layout-wrapper {
+            display: flex;
+            gap: 50px;
+            width: 100%;
+            max-width: 1300px;
+            padding: 0 40px;
+            margin-top: 120px;
+            margin-bottom: 20px;
+        }
+
+        /* === COLUMNA PRINCIPAL === */
+        .main-col {
+            flex: 3;
+            background: #fff;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.06);
+            width: 100%;
+        }
+
+        .side-col {
+            flex: 1;
+            min-width: 320px;
+            max-width: 400px;
+        }
+
+        /* === SIDEBAR === */
+        .sticky-summary {
+            position: sticky;
+            top: 110px;
+            background: #111;
+            color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            border-top: 6px solid #ff4d00;
+            width: 100%;
+        }
+
+        .sidebar-title {
+            font-family: 'Space Grotesk';
+            color: #ff4d00;
+            margin-top: 0;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .summary-list {
+            padding-left: 20px;
+            list-style: disc;
+        }
+
+        .summary-list li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #ccc;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 8px;
+            display: list-item;
+            word-wrap: break-word;
+        }
+
+        .action-box {
+            margin-top: 30px;
+            padding: 20px;
+            background: #222;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+            width: 100%;
+        }
+
+        .trend-text {
+            color: #ff4d00;
+            font-size: 2.2rem;
+            font-weight: 800;
+            font-family: 'Space Grotesk';
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .trend-text.alcista {
+            color: #00cc66;
+        }
+
+        /* VERDE */
+        .trend-text.bajista {
+            color: #ff3333;
+        }
+
+        /* ROJO */
+
+        .trend-label {
+            font-size: 0.75rem;
+            color: #888;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* === ESTILOS INFORME === */
+        .headline {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800;
+            font-size: 2.4rem;
+            letter-spacing: -1px;
+            margin-top: 0;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #000;
+            word-wrap: break-word;
+        }
+
+        .sentiment-badge {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        .intro-lead {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .subhead {
+            font-family: 'Space Grotesk';
+            font-size: 1.5rem;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #111;
+            font-weight: 700;
+            border-left: 4px solid #ff4d00;
+            padding-left: 15px;
+        }
+
+        .divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 30px 0;
+        }
+
+        .theme-box {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ff4d00;
+            position: relative;
+            width: 100%;
+        }
+
+        .theme-number {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 3rem;
+            font-family: 'Space Grotesk';
+            font-weight: 700;
+            color: #eaeaea;
+            line-height: 1;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .theme-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .theme-content h3 {
+            font-family: 'Space Grotesk';
+            font-size: 1.3rem;
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+            font-weight: 700;
+        }
+
+        .theme-content p {
+            color: #333;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.7;
+            word-wrap: break-word;
+        }
+
+        /* === 🔥 NUEVO VEREDICTO PREMIUM V13 === */
+        .verdict-box {
+            background: #fffcf9;
+            background: linear-gradient(135deg, #fff8f2 0%, #fff 100%);
+            border: 1px solid #ffdfc9;
+            border-left: 6px solid #ff4d00;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 50px;
+            box-shadow: 0 10px 40px -10px rgba(255, 77, 0, 0.1);
+            width: 100%;
+        }
+
+        .verdict-box h3 {
+            font-family: 'Space Grotesk';
+            color: #ff4d00;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .verdict-box .conclusion {
+            font-size: 1.15rem;
+            color: #1a1a1a;
+            font-weight: 500;
+            line-height: 1.6;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .date-footer {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+            font-size: 0.75rem;
+            color: #999;
+            width: 100%;
+            max-width: 600px;
+            font-family: monospace;
+            border-top: 1px solid #ddd;
+        }
+
+        /* === 📱 MÓVIL (V13 FULL) === */
+        @media (max-width: 900px) {
+            .nav-fixed {
+                padding: 15px 20px;
+            }
+
+            .brand {
+                font-size: 0.9rem;
+            }
+
+            .layout-wrapper {
+                flex-direction: column;
+                gap: 30px;
+                padding: 0 15px;
+                margin-top: 80px;
+            }
+
+            .main-col {
+                padding: 30px 20px;
+                width: 100%;
+                max-width: 100%;
+                order: 2;
+                /* Informe DEBAJO */
+            }
+
+            .side-col {
+                width: 100%;
+                max-width: 100%;
+                min-width: 0;
+                order: 1;
+                /* Sidebar ENCIMA */
+            }
+
+            .headline {
+                font-size: 1.6rem;
+                letter-spacing: -0.5px;
+                margin-bottom: 15px;
+            }
+
+            .intro-lead {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .subhead {
+                font-size: 1.3rem;
+                padding-left: 10px;
+                border-left-width: 3px;
+                margin-top: 30px;
+            }
+
+            .verdict-box {
+                padding: 20px;
+                margin-top: 30px;
+            }
+
+            .verdict-box .conclusion {
+                font-size: 1rem;
+            }
+
+            .theme-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .theme-content p {
+                font-size: 0.95rem;
+            }
+
+            .theme-number {
+                font-size: 2.5rem;
+                top: 10px;
+                right: 15px;
+            }
+
+            .sticky-summary {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="nav-fixed">
+        <div><a href="index.html">← INDEX</a></div>
+        <div class="brand">/// SERGIO BOLSA</div>
+    </div>
+
+    <div class="layout-wrapper">
+        <!-- AQUÍ SE INYECTA EL CONTENIDO DE LA IA -->
+        <div class="main-col">
+    <div class="sentiment-badge">BULLISH</div>
+    
+    <h1 class="headline">Mercados en Llamas: ¿Qué Impulsa la Explosión Bursátil?</h1>
+    
+    <p class="intro-lead">Resumen ejecutivo: La tendencia alcista se mantiene firme. Hace una hora el panorama era incierto (veredicto previo: <strong>Desconocido</strong>), pero los índices <strong>S&P 500 (+0.49%)</strong> y <strong>MSCI World (+0.54%)</strong> siguen subiendo, reforzando el optimismo de los inversores.</p>
+    
+    <hr class="divider">
+
+    <h2 class="subhead">Radar de Mercado: 3 Claves</h2>
+    
+    <div class="theme-box">
+        <div class="theme-number">01</div>
+        <div class="theme-content">
+            <h3>Energía Renace: EE. UU. abre puertas a Venezuela</h3>
+            <p>El gobierno estadounidense ha autorizado a los gigantes petroleros a operar libremente en Venezuela, desbloqueando <strong>inversiones multimillonarias</strong> en un país rico en crudo. La medida podría reactivar la producción y crear una nueva ola de capital extranjero, impulsando los precios del petróleo y beneficiando a <strong>empresas energéticas</strong> cotizadas en NY.</p>
+        </div>
+    </div>
+
+    <div class="theme-box">
+        <div class="theme-number">02</div>
+        <div class="theme-content">
+            <h3>Dividendos al alza: NextEra Energy eleva su paga 10%</h3>
+            <p>NextEra Energy anunció un aumento del <strong>10 % en su dividendo trimestral</strong>, llevándolo a $0.6232 por acción. Este gesto refuerza la confianza en su modelo de energía renovable y podría atraer a los inversores en busca de ingresos estables, disparando su acción en los próximos días.</p>
+        </div>
+    </div>
+
+    <div class="theme-box">
+        <div class="theme-number">03</div>
+        <div class="theme-content">
+            <h3>Apuesta contra Hims & Hers: Hedge funds se preparan para la tormenta Wegovy</h3>
+            <p>Datos de Hazeltree revelan que los fondos de cobertura están posicionados fuertemente en corto contra <strong>Hims & Hers Health (HIMS)</strong> justo antes del esperado debate sobre el medicamento Wegovy. La presión bajista sugiere que la acción podría sufrir una corrección significativa si los resultados no superan las expectativas.</p>
+        </div>
+    </div>
+
+    <div class="verdict-box">
+        <h3>⚡ VEREDICTO DEL ANALISTA</h3>
+        <p class="conclusion">Recomiendo <strong>comprar</strong> la exposición a energía renovable y dividendos, mientras se <strong>vende</strong> la exposición a Hims & Hers por su vulnerabilidad a la presión de los short sellers. Veredicto previo: <strong>Desconocido.</strong></p>
+
+        <div style="margin-top: 25px; padding-top: 20px; border-top: 1px dashed rgba(0,0,0,0.1);">
+            <p style="margin-bottom: 8px; font-size: 0.95rem;">
+                <strong>🧭 CIERRE DE SESIÓN:</strong> 
+                <span style="background:#eee; padding:2px 6px; border-radius:4px;">↑ SUPERA vs Precio Actual</span> 
+                (Fiabilidad: <strong>84%</strong>)
+            </p>
+            <p style="margin-bottom: 20px; font-size: 0.95rem;">
+                <strong>🔭 PROYECCIÓN 7 DÍAS:</strong> 
+                Se anticipa una continuación alcista moderada, con los índices principales manteniendo su impulso positivo.
+            </p>
+
+            <div style="margin-bottom: 15px; background: rgba(0, 255, 85, 0.05); padding: 10px; border-left: 3px solid #00ff55; border-radius: 4px;">
+                <p style="margin: 0; font-size: 0.95rem; color: #006622;"><strong>🟢 APUESTA COMPRA (LONG):</strong></p>
+                <p style="margin: 5px 0; font-weight: bold; font-size: 1.1rem;">NextEra Energy ($NEE)</p>
+                <p style="margin: 0; font-size: 0.85rem; font-style: italic; color: #444;">
+                    "💡 Incremento de dividendo + exposición a renovables impulsará la acción."
+                </p>
+            </div>
+
+            <div style="background: rgba(255, 0, 0, 0.05); padding: 10px; border-left: 3px solid #ff0000; border-radius: 4px;">
+                <p style="margin: 0; font-size: 0.95rem; color: #990000;"><strong>🔴 APUESTA VENTA (SHORT):</strong></p>
+                <p style="margin: 5px 0; font-weight: bold; font-size: 1.1rem;">Hims & Hers Health ($HIMS)</p>
+                <p style="margin: 0; font-size: 0.85rem; font-style: italic; color: #444;">
+                    "💡 Presión de short sellers y dudas sobre Wegovy arrastrarán la cotización."
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="side-col">
+    <div class="sticky-summary">
+        <div class="sidebar-title">DATOS FLASH</div>
+        <ul class="summary-list">
+            <li>S&P 500: <strong>+0.49%</strong> 🟢 (6866.2)</li>
+            <li>MSCI Global: <strong>+0.54%</strong> 🟢</li>
+            <li>DHC stock alcanza máximo de 52 semanas a $6.54</li>
+            <li>El oro roza los $5,000 tras CPI por debajo de expectativas</li>
+        </ul>
+        <div class="action-box">
+            <div class="trend-text alcista">ALCISTA</div>
+            <div class="trend-label">SENTIMIENTO HOY</div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <div class="date-footer">
+        Informe generado automáticamente: 13/02/2026 18:01H
+    </div>
+
+</body>
+
+</html>
